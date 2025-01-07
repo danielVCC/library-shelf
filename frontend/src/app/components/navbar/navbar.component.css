@@ -1,0 +1,9 @@
+.navbar {
+  border-bottom: solid green;
+}
+
+.navbar-brand {
+  font-size: 1.8em;
+  text-decoration: underline;
+  text-decoration-color: green;
+}
