@@ -1,0 +1,89 @@
+<div
+  class="modal fade"
+  id="editBookModal"
+  tabindex="-1"
+  aria-labelledby="editBookModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editBookModalLabel">Edit Book</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- Edit Form -->
+        <form>
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input
+              type="text"
+              id="title"
+              class="form-control"
+              [(ngModel)]="tempBookDetails.title"
+              name="title"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="author" class="form-label">Author</label>
+            <select
+              id="author"
+              class="form-select"
+              [(ngModel)]="tempBookDetails.author"
+              name="author"
+            >
+              <option *ngFor="let author of authors" [value]="author.id">
+                {{ author.name }}
+              </option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select
+              id="category"
+              class="form-select"
+              [(ngModel)]="tempBookDetails.category"
+              name="category"
+            >
+              <option *ngFor="let category of categories" [value]="category.id">
+                {{ category.name }}
+              </option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="publishedYear" class="form-label">Published Year</label>
+            <input
+              type="number"
+              id="publishedYear"
+              class="form-control"
+              [(ngModel)]="tempBookDetails.publishedYear"
+              name="publishedYear"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea
+              id="description"
+              class="form-control"
+              [(ngModel)]="tempBookDetails.description"
+              name="description"
+            ></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" (click)="saveChanges()">
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

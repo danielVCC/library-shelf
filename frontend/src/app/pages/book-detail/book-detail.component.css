@@ -1,0 +1,8 @@
+.header-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  margin: 6px;
+}

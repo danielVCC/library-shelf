@@ -2,11 +2,28 @@
   <h2>Book Details</h2>
   <div *ngIf="bookDetails; else loading">
     <h3>{{ bookDetails.title }}</h3>
+    <div class="header-buttons">
+      <button
+        type="button"
+        class="btn btn-warning"
+        data-bs-toggle="modal"
+        data-bs-target="#editBookModal"
+      >
+        Edit
+      </button>
+      <button type="button" class="btn btn-danger">Delete</button>
+    </div>
     <p><strong>Author:</strong> {{ bookDetails.author.name }}</p>
-    <p><strong>published Year:</strong> {{ bookDetails.publishedYear }}</p>
+    <p><strong>Category:</strong> {{ bookDetails.category.name }}</p>
+    <p><strong>Published Year:</strong> {{ bookDetails.publishedYear }}</p>
     <p><strong>Description:</strong> {{ bookDetails.description }}</p>
   </div>
   <ng-template #loading>
     <p>Loading book details...</p>
   </ng-template>
+  <!-- Edit Book Modal -->
+  <app-edit-book-modal
+    [bookDetails]="bookDetails"
+    (onSave)="handleSave($event)"
+  ></app-edit-book-modal>
 </div>
