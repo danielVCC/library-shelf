@@ -1,1 +1,61 @@
-<p>add-book works!</p>
+<div class="container book-form">
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="title" class="form-label">Name</label>
+      <input
+        type="text"
+        id="title"
+        class="form-control"
+        formControlName="title"
+        placeholder="Enter book name"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="author" class="form-label">Author</label>
+      <select
+        id="author"
+        class="form-select"
+        formControlName="authorId"
+        aria-label="Select Author"
+      >
+        <option *ngFor="let author of authors" [value]="author.id">
+          {{ author.name }}
+        </option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="category" class="form-label">Category</label>
+      <select
+        id="category"
+        class="form-select"
+        formControlName="categoryId"
+        aria-label="Select Category"
+      >
+        <option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="publishedYear" class="form-label">Published Year</label>
+      <input
+        type="number"
+        id="publishedYear"
+        class="form-control"
+        formControlName="publishedYear"
+        placeholder="Enter year"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        id="description"
+        class="form-control"
+        formControlName="description"
+        rows="3"
+        placeholder="Enter book description"
+      ></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Create Book</button>
+  </form>
+</div>
