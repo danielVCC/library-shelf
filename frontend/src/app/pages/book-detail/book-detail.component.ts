@@ -36,10 +36,10 @@ export class BookDetailComponent implements OnInit {
 
   handleSave(updatedFields: {
     title: string;
-    description: string;
-    publishedYear: number;
     authorId: number;
     categoryId: number;
+    publishedYear: number;
+    description: string;
   }): void {
     const updatedBook = {
       ...this.bookDetails, // Include existing fields
