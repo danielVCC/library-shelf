@@ -13,6 +13,7 @@ import { EditBookModalComponent } from '../../components/edit-book-modal/edit-bo
 export class BookDetailComponent implements OnInit {
   bookId!: number;
   bookDetails: any;
+  isLoading: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,9 +28,11 @@ export class BookDetailComponent implements OnInit {
     this.bookService.getBookById(this.bookId).subscribe(
       (data) => {
         this.bookDetails = data;
+        this.isLoading = false;
       },
       (error) => {
         console.error('Error fetching book data:', error);
+        this.isLoading = false;
       }
     );
   }
@@ -41,6 +44,7 @@ export class BookDetailComponent implements OnInit {
     publishedYear: number;
     description: string;
   }): void {
+    this.isLoading = true; // start loading state
     const updatedBook = {
       ...this.bookDetails, // Include existing fields
       ...updatedFields, // Override changed fields
@@ -52,9 +56,11 @@ export class BookDetailComponent implements OnInit {
       next: (response) => {
         console.log('Book updated successfully:', response);
         this.bookDetails = { ...response };
+        this.isLoading = false;
       },
       error: (error) => {
         console.error('Error updating book:', error);
+        this.isLoading = false;
       },
     });
   }

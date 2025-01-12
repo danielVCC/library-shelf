@@ -1,7 +1,6 @@
 <div class="container mt-4">
   <h2>Book Details</h2>
-  <div *ngIf="bookDetails; else loading">
-    <h3>{{ bookDetails.title }}</h3>
+  <div *ngIf="!isLoading; else loading">
     <div class="header-buttons">
       <button
         type="button"
@@ -13,17 +12,23 @@
       </button>
       <button type="button" class="btn btn-danger">Delete</button>
     </div>
+    <h3>{{ bookDetails.title }}</h3>
     <p><strong>Author:</strong> {{ bookDetails.author.name }}</p>
     <p><strong>Category:</strong> {{ bookDetails.category.name }}</p>
     <p><strong>Published Year:</strong> {{ bookDetails.publishedYear }}</p>
     <p><strong>Description:</strong> {{ bookDetails.description }}</p>
   </div>
-  <ng-template #loading>
-    <p>Loading book details...</p>
-  </ng-template>
   <!-- Edit Book Modal -->
   <app-edit-book-modal
     [bookDetails]="bookDetails"
     (onSave)="handleSave($event)"
   ></app-edit-book-modal>
+  <!-- loading spinner-->
+  <ng-template #loading>
+    <div class="d-flex justify-content-center mb-3">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </ng-template>
 </div>
