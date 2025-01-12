@@ -10,7 +10,14 @@
       >
         Edit
       </button>
-      <button type="button" class="btn btn-danger">Delete</button>
+      <button
+        type="button"
+        class="btn btn-danger"
+        data-bs-toggle="modal"
+        data-bs-target="#confirmDeleteModal"
+      >
+        Delete
+      </button>
     </div>
     <h3>{{ bookDetails.title }}</h3>
     <p><strong>Author:</strong> {{ bookDetails.author.name }}</p>
@@ -18,11 +25,17 @@
     <p><strong>Published Year:</strong> {{ bookDetails.publishedYear }}</p>
     <p><strong>Description:</strong> {{ bookDetails.description }}</p>
   </div>
-  <!-- Edit Book Modal -->
+  <!-- edit nook modal -->
   <app-edit-book-modal
     [bookDetails]="bookDetails"
     (onSave)="handleSave($event)"
   ></app-edit-book-modal>
+  <!-- delete modal -->
+  <app-confirm-delete-modal
+    itemType="Book"
+    [itemName]="bookDetails?.title"
+    (onConfirm)="deleteBook()"
+  ></app-confirm-delete-modal>
   <!-- loading spinner-->
   <ng-template #loading>
     <div class="d-flex justify-content-center mb-3">

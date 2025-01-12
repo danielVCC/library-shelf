@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../../services/book/book.service';
 import { EditBookModalComponent } from '../../components/edit-book-modal/edit-book-modal.component';
+import { ConfirmDeleteModalComponent } from '../../components/confirm-delete-modal/confirm-delete-modal.component';
 
 @Component({
   selector: 'app-book-detail',
-  imports: [CommonModule, EditBookModalComponent],
+  imports: [CommonModule, EditBookModalComponent, ConfirmDeleteModalComponent],
   templateUrl: './book-detail.component.html',
   styleUrl: './book-detail.component.css',
 })
@@ -17,6 +18,7 @@ export class BookDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private bookService: BookService
   ) {}
 
@@ -60,6 +62,25 @@ export class BookDetailComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error updating book:', error);
+        this.isLoading = false;
+      },
+    });
+  }
+
+  deleteBook(): void {
+    this.isLoading = true;
+
+    this.bookService.deleteBook(this.bookId).subscribe({
+      next: () => {
+        console.log('Book deleted successfully');
+        alert('Book deleted successfully!');
+        this.router.navigate(['/books']); // Redireciona para a lista de livros
+      },
+      error: (error) => {
+        console.error('Error deleting book:', error);
+        alert('Failed to delete book. Please try again later.');
+      },
+      complete: () => {
         this.isLoading = false;
       },
     });
