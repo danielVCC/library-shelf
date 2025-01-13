@@ -19,11 +19,12 @@
         Delete
       </button>
     </div>
-    <h3>{{ bookDetails.title }}</h3>
-    <p><strong>Author:</strong> {{ bookDetails.author.name }}</p>
-    <p><strong>Category:</strong> {{ bookDetails.category.name }}</p>
-    <p><strong>Published Year:</strong> {{ bookDetails.publishedYear }}</p>
-    <p><strong>Description:</strong> {{ bookDetails.description }}</p>
+    <h3>{{ bookDetails?.title }}</h3>
+    <p><strong>Author:</strong> {{ bookDetails?.author?.name }}</p>
+    <p><strong>Category:</strong> {{ bookDetails?.category?.name }}</p>
+    <p><strong>Published Year:</strong> {{ bookDetails?.publishedYear }}</p>
+    <p><strong>Description:</strong> {{ bookDetails?.description }}</p>
+    <p><strong>Last Time Updated:</strong> {{ bookDetails?.updatedAt }}</p>
   </div>
   <!-- edit nook modal -->
   <app-edit-book-modal

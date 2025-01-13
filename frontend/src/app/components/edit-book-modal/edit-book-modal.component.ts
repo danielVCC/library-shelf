@@ -3,6 +3,9 @@ import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthorService } from '../../services/author/author.service';
 import { CategoryService } from '../../services/category/category.service';
+import { Book } from '../../types/book.model';
+import { Author } from '../../types/author.model';
+import { Category } from '../../types/category.model';
 
 @Component({
   selector: 'app-edit-book-modal',
@@ -11,13 +14,12 @@ import { CategoryService } from '../../services/category/category.service';
   styleUrl: './edit-book-modal.component.css',
 })
 export class EditBookModalComponent {
-  @Input() bookDetails: any; // receive book details from parent component
+  @Input() bookDetails?: Book; // receive book details from parent component
   @Output() onSave = new EventEmitter<any>();
 
   editForm!: FormGroup;
-  tempBookDetails: any = {};
-  authors: any[] = [];
-  categories: any[] = [];
+  authors: Author[] = [];
+  categories: Category[] = [];
 
   constructor(
     private fb: FormBuilder,

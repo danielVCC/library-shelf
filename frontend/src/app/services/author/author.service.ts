@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Author } from '../../types/author.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,11 +11,11 @@ export class AuthorService {
 
   constructor(private http: HttpClient) {}
 
-  getAuthors(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}`);
+  getAuthors(): Observable<Author[]> {
+    return this.http.get<Author[]>(`${this.baseUrl}`);
   }
 
-  getAuthorById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/${id}`);
+  getAuthorById(id: number): Observable<Author> {
+    return this.http.get<Author>(`${this.baseUrl}/${id}`);
   }
 }

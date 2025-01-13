@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { Book } from '../../types/book.model';
 
 @Component({
   selector: 'app-book-card',
@@ -8,5 +9,5 @@ import { RouterModule } from '@angular/router';
   styleUrl: './book-card.component.css',
 })
 export class BookCardComponent {
-  @Input() book: any; // receive book info
+  @Input() book!: Book; // receive book info
 }

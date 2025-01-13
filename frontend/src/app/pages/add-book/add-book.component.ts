@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 import { AuthorService } from '../../services/author/author.service';
 import { CategoryService } from '../../services/category/category.service';
 import { BookService } from '../../services/book/book.service';
+import { Author } from '../../types/author.model';
+import { Category } from '../../types/category.model';
 
 @Component({
   selector: 'app-add-book',
@@ -20,8 +22,8 @@ import { BookService } from '../../services/book/book.service';
 })
 export class AddBookComponent implements OnInit {
   bookForm!: FormGroup;
-  authors: any[] = [];
-  categories: any[] = [];
+  authors: Author[] = [];
+  categories: Category[] = [];
 
   constructor(
     private fb: FormBuilder,

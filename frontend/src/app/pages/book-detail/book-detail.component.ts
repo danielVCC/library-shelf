@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../../services/book/book.service';
 import { EditBookModalComponent } from '../../components/edit-book-modal/edit-book-modal.component';
 import { ConfirmDeleteModalComponent } from '../../components/confirm-delete-modal/confirm-delete-modal.component';
+import { Book, BookUpdate } from '../../types/book.model';
 
 @Component({
   selector: 'app-book-detail',
@@ -13,7 +14,7 @@ import { ConfirmDeleteModalComponent } from '../../components/confirm-delete-mod
 })
 export class BookDetailComponent implements OnInit {
   bookId!: number;
-  bookDetails: any;
+  bookDetails?: Book;
   isLoading: boolean = true;
 
   constructor(
@@ -39,6 +40,7 @@ export class BookDetailComponent implements OnInit {
     );
   }
 
+  // handle save-changes for edit-modal
   handleSave(updatedFields: {
     title: string;
     authorId: number;
@@ -47,11 +49,13 @@ export class BookDetailComponent implements OnInit {
     description: string;
   }): void {
     this.isLoading = true; // start loading state
-    const updatedBook = {
-      ...this.bookDetails, // Include existing fields
-      ...updatedFields, // Override changed fields
+
+    const updatedBook: BookUpdate = {
+      title: updatedFields.title,
       author: { id: updatedFields.authorId },
       category: { id: updatedFields.categoryId },
+      publishedYear: updatedFields.publishedYear,
+      description: updatedFields.description,
     };
 
     this.bookService.updateBook(this.bookId, updatedBook).subscribe({
@@ -67,6 +71,7 @@ export class BookDetailComponent implements OnInit {
     });
   }
 
+  // handle delete for delete-modal
   deleteBook(): void {
     this.isLoading = true;
 
