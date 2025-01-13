@@ -44,8 +44,6 @@ export class BookDetailComponent implements OnInit {
   handleSave(updatedFields: BookUpdate): void {
     this.isLoading = true; // start loading state
 
-    console.log(updatedFields);
-
     this.bookService.updateBook(this.bookId, updatedFields).subscribe({
       next: (response) => {
         console.log('Book updated successfully:', response);
