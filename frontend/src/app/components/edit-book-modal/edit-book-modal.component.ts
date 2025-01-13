@@ -3,7 +3,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthorService } from '../../services/author/author.service';
 import { CategoryService } from '../../services/category/category.service';
-import { Book } from '../../types/book.model';
+import { Book, BookUpdate } from '../../types/book.model';
 import { Author } from '../../types/author.model';
 import { Category } from '../../types/category.model';
 
@@ -77,10 +77,10 @@ export class EditBookModalComponent {
   }
 
   saveChanges(): void {
-    const updatedFields = {
+    const updatedFields: BookUpdate = {
       title: this.editForm.get('title')?.value,
-      authorId: this.editForm.get('author')?.value,
-      categoryId: this.editForm.get('category')?.value,
+      author: { id: this.editForm.get('author')?.value },
+      category: { id: this.editForm.get('category')?.value },
       publishedYear: this.editForm.get('publishedYear')?.value,
       description: this.editForm.get('description')?.value,
     };

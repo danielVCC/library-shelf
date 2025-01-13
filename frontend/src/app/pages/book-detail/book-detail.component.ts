@@ -41,24 +41,12 @@ export class BookDetailComponent implements OnInit {
   }
 
   // handle save-changes for edit-modal
-  handleSave(updatedFields: {
-    title: string;
-    authorId: number;
-    categoryId: number;
-    publishedYear: number;
-    description: string;
-  }): void {
+  handleSave(updatedFields: BookUpdate): void {
     this.isLoading = true; // start loading state
 
-    const updatedBook: BookUpdate = {
-      title: updatedFields.title,
-      author: { id: updatedFields.authorId },
-      category: { id: updatedFields.categoryId },
-      publishedYear: updatedFields.publishedYear,
-      description: updatedFields.description,
-    };
+    console.log(updatedFields);
 
-    this.bookService.updateBook(this.bookId, updatedBook).subscribe({
+    this.bookService.updateBook(this.bookId, updatedFields).subscribe({
       next: (response) => {
         console.log('Book updated successfully:', response);
         this.bookDetails = { ...response };
