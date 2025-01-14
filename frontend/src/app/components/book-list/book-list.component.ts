@@ -19,15 +19,15 @@ export class BookListComponent implements OnInit {
   constructor(private bookService: BookService) {}
 
   ngOnInit(): void {
-    this.bookService.getBooks().subscribe(
-      (data) => {
+    this.bookService.getBooks().subscribe({
+      next: (data) => {
         this.books = data;
         this.isLoading = false;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching books data:', error);
         this.isLoading = false;
-      }
-    );
+      },
+    });
   }
 }

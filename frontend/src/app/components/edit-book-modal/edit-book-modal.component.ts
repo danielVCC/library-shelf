@@ -56,28 +56,28 @@ export class EditBookModalComponent {
 
   // load authors used in authors dropdown
   loadAuthors(): void {
-    this.authorService.getAuthors().subscribe(
-      (data) => {
+    this.authorService.getAuthors().subscribe({
+      next: (data) => {
         this.authors = data;
         this.isLoadingAuthors = false;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching authors:', error);
-      }
-    );
+      },
+    });
   }
 
   // load categories used in categories dropdown
   loadCategories(): void {
-    this.categoryService.getCategories().subscribe(
-      (data) => {
+    this.categoryService.getCategories().subscribe({
+      next: (data) => {
         this.categories = data;
         this.isLoadingCategories = false;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching categories:', error);
-      }
-    );
+      },
+    });
   }
 
   saveChanges(): void {

@@ -35,16 +35,16 @@ export class BookDetailComponent implements OnInit {
     this.bookId = Number(this.route.snapshot.paramMap.get('id'));
 
     // get book details by ID
-    this.bookService.getBookById(this.bookId).subscribe(
-      (data) => {
+    this.bookService.getBookById(this.bookId).subscribe({
+      next: (data) => {
         this.bookDetails = data;
         this.isLoading = false;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching book data:', error);
         this.isLoading = false;
-      }
-    );
+      },
+    });
   }
 
   // handle save-changes for edit-modal
