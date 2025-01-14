@@ -20,6 +20,8 @@ export class EditBookModalComponent {
   editForm!: FormGroup;
   authors: Author[] = [];
   categories: Category[] = [];
+  isLoadingAuthors: boolean = true;
+  isLoadingCategories: boolean = true;
 
   constructor(
     private fb: FormBuilder,
@@ -57,6 +59,7 @@ export class EditBookModalComponent {
     this.authorService.getAuthors().subscribe(
       (data) => {
         this.authors = data;
+        this.isLoadingAuthors = false;
       },
       (error) => {
         console.error('Error fetching authors:', error);
@@ -69,6 +72,7 @@ export class EditBookModalComponent {
     this.categoryService.getCategories().subscribe(
       (data) => {
         this.categories = data;
+        this.isLoadingCategories = false;
       },
       (error) => {
         console.error('Error fetching categories:', error);

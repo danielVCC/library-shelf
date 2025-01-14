@@ -1,14 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { BookService } from '../../services/book/book.service';
+import { Book, BookUpdate } from '../../types/book.model';
 import { EditBookModalComponent } from '../../components/edit-book-modal/edit-book-modal.component';
 import { ConfirmDeleteModalComponent } from '../../components/confirm-delete-modal/confirm-delete-modal.component';
-import { Book, BookUpdate } from '../../types/book.model';
+import { LoadingSpinnerComponent } from '../../components/loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-book-detail',
-  imports: [CommonModule, EditBookModalComponent, ConfirmDeleteModalComponent],
+  imports: [
+    CommonModule,
+    EditBookModalComponent,
+    ConfirmDeleteModalComponent,
+    LoadingSpinnerComponent,
+  ],
   templateUrl: './book-detail.component.html',
   styleUrl: './book-detail.component.css',
 })

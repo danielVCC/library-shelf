@@ -1,5 +1,7 @@
 <div class="container book-form">
+  <h2>New Book Info</h2>
   <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <!-- Book name input -->
     <div class="mb-3">
       <label for="title" class="form-label">Name</label>
       <input
@@ -10,6 +12,7 @@
         placeholder="Enter book name"
       />
     </div>
+    <!-- Authors dropdown -->
     <div class="mb-3">
       <label for="author" class="form-label">Author</label>
       <select
@@ -17,12 +20,23 @@
         class="form-select"
         formControlName="authorId"
         aria-label="Select Author"
+        *ngIf="!isLoadingAuthors; else loadingAuthors"
       >
         <option *ngFor="let author of authors" [value]="author.id">
           {{ author.name }}
         </option>
       </select>
+      <ng-template #loadingAuthors>
+        <select
+          class="form-select"
+          aria-label="Disabled select author"
+          disabled
+        >
+          <option selected>Loading Authors...</option>
+        </select>
+      </ng-template>
     </div>
+    <!-- Categories dropdown -->
     <div class="mb-3">
       <label for="category" class="form-label">Category</label>
       <select
@@ -30,12 +44,23 @@
         class="form-select"
         formControlName="categoryId"
         aria-label="Select Category"
+        *ngIf="!isLoadingCategories; else loadingCategories"
       >
         <option *ngFor="let category of categories" [value]="category.id">
           {{ category.name }}
         </option>
       </select>
+      <ng-template #loadingCategories>
+        <select
+          class="form-select"
+          aria-label="Disabled select category"
+          disabled
+        >
+          <option selected>Loading Categories...</option>
+        </select>
+      </ng-template>
     </div>
+    <!-- Published Year input -->
     <div class="mb-3">
       <label for="publishedYear" class="form-label">Published Year</label>
       <input
@@ -46,6 +71,7 @@
         placeholder="Enter year"
       />
     </div>
+    <!-- Description input -->
     <div class="mb-3">
       <label for="description" class="form-label">Description</label>
       <textarea

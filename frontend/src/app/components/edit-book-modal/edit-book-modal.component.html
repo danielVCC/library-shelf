@@ -33,11 +33,25 @@
           <!-- Author -->
           <div class="mb-3">
             <label for="author" class="form-label">Author</label>
-            <select id="author" class="form-select" formControlName="author">
+            <select
+              id="author"
+              class="form-select"
+              formControlName="author"
+              *ngIf="!isLoadingAuthors; else loadingAuthors"
+            >
               <option *ngFor="let author of authors" [value]="author.id">
                 {{ author.name }}
               </option>
             </select>
+            <ng-template #loadingAuthors>
+              <select
+                class="form-select"
+                aria-label="Disabled select author"
+                disabled
+              >
+                <option selected>Loading Authors...</option>
+              </select>
+            </ng-template>
           </div>
 
           <!-- Category -->
@@ -47,11 +61,21 @@
               id="category"
               class="form-select"
               formControlName="category"
+              *ngIf="!isLoadingCategories; else loadingCategories"
             >
               <option *ngFor="let category of categories" [value]="category.id">
                 {{ category.name }}
               </option>
             </select>
+            <ng-template #loadingCategories>
+              <select
+                class="form-select"
+                aria-label="Disabled select category"
+                disabled
+              >
+                <option selected>Loading Categories...</option>
+              </select>
+            </ng-template>
           </div>
 
           <!-- Published Year -->

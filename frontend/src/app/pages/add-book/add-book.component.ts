@@ -6,8 +6,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+
 import { AuthorService } from '../../services/author/author.service';
 import { CategoryService } from '../../services/category/category.service';
 import { BookService } from '../../services/book/book.service';
@@ -24,10 +24,11 @@ export class AddBookComponent implements OnInit {
   bookForm!: FormGroup;
   authors: Author[] = [];
   categories: Category[] = [];
+  isLoadingAuthors: boolean = true;
+  isLoadingCategories: boolean = true;
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient,
     private router: Router,
     private authorService: AuthorService,
     private categoryService: CategoryService,
@@ -54,6 +55,7 @@ export class AddBookComponent implements OnInit {
     this.authorService.getAuthors().subscribe(
       (data) => {
         this.authors = data;
+        this.isLoadingAuthors = false;
       },
       (error) => {
         console.error('Error fetching authors:', error);
@@ -66,6 +68,7 @@ export class AddBookComponent implements OnInit {
     this.categoryService.getCategories().subscribe(
       (data) => {
         this.categories = data;
+        this.isLoadingCategories = false;
       },
       (error) => {
         console.error('Error fetching categories:', error);
