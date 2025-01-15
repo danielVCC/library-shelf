@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row" *ngIf="!isLoading; else loading">
+  <div class="row">
     <div
       class="col-md-4 d-flex mb-3 justify-content-center"
       *ngFor="let book of books"
@@ -7,7 +7,4 @@
       <app-book-card class="book-card" [book]="book"></app-book-card>
     </div>
   </div>
-  <ng-template #loading>
-    <app-loading-spinner></app-loading-spinner>
-  </ng-template>
 </div>

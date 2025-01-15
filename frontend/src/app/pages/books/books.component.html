@@ -1,7 +1,21 @@
 <div class="container mt-4">
   <h2>Book Galery</h2>
   <div class="header-buttons">
+    <div class="sort-container">
+      <label for="sort" class="me-2">Sort:</label>
+      <select id="sort" class="form-select" (change)="onSortChange($event)">
+        <option value="title">Book Name (A-Z)</option>
+        <option value="author">Author (A-Z)</option>
+        <option value="year">Published Year</option>
+        <option value="updatedAt">Last Updated</option>
+      </select>
+    </div>
     <a class="btn btn-primary" href="add-book" role="button">+ Add Book</a>
   </div>
-  <app-book-list></app-book-list>
+  <div class="content" *ngIf="!isLoading; else loading">
+    <app-book-list [books]="books"></app-book-list>
+  </div>
+  <ng-template #loading>
+    <app-loading-spinner></app-loading-spinner>
+  </ng-template>
 </div>
