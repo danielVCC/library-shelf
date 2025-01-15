@@ -7,6 +7,16 @@
   flex-direction: column;
 }
 
+.card-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
 .card-img-top {
   padding: 8px;
 }
