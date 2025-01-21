@@ -30,5 +30,15 @@ public class AuthorService {
         authorRepository.deleteById(id);
     }
 
+    public Author updateAuthor(Long id, Author updatedAuthor) {
+        Author existingAuthor = authorRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Author not found"));
+
+        // update allowed fields
+        existingAuthor.setName(updatedAuthor.getName());
+        existingAuthor.setBio(updatedAuthor.getBio());
+
+        return authorRepository.save(existingAuthor);
+    }
 }
 
