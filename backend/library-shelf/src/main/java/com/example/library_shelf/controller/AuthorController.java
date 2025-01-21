@@ -37,10 +37,9 @@ public class AuthorController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Author> updateAuthor(@PathVariable Long id, @RequestBody Author updatedAuthor) {
-        return authorService.getAuthorById(id).map(existingAuthor -> {
-            updatedAuthor.setId(id);
-            return ResponseEntity.ok(authorService.saveAuthor(updatedAuthor));
-        }).orElse(ResponseEntity.notFound().build());
+        return authorService.getAuthorById(id)
+                .map(existingAuthor -> ResponseEntity.ok(authorService.updateAuthor(id, updatedAuthor)))
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
