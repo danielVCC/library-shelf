@@ -1,0 +1,28 @@
+<div class="container author-form">
+  <h2>New Author Info</h2>
+  <form [formGroup]="authorForm" (ngSubmit)="onSubmit()">
+    <!-- Author name input -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        formControlName="name"
+        placeholder="Enter Author name"
+      />
+    </div>
+    <!-- Bio input -->
+    <div class="mb-3">
+      <label for="bio" class="form-label">Biograph</label>
+      <textarea
+        id="bio"
+        class="form-control"
+        formControlName="bio"
+        rows="3"
+        placeholder="Enter Author bio"
+      ></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Create Author</button>
+  </form>
+</div>

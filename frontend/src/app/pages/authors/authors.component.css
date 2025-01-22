@@ -1,0 +1,10 @@
+.header-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 2em 0em;
+}
+
+.sort-container {
+  display: flex;
+  align-items: center;
+}

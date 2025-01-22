@@ -1,0 +1,44 @@
+<div class="container mt-4">
+  <h2>Book Details</h2>
+  <div *ngIf="!isLoading; else loading">
+    <div class="header-buttons">
+      <button
+        type="button"
+        class="btn btn-warning"
+        data-bs-toggle="modal"
+        data-bs-target="#editAuthorModal"
+      >
+        Edit
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger"
+        data-bs-toggle="modal"
+        data-bs-target="#confirmDeleteModal"
+      >
+        Delete
+      </button>
+    </div>
+    <h3>{{ authorDetails?.name }}</h3>
+    <p><strong>Bio:</strong> {{ authorDetails?.bio }}</p>
+    <div class="author-books">
+      <h4>Published Books: {{ books.length }}</h4>
+      <app-book-list [books]="books"></app-book-list>
+    </div>
+  </div>
+  <!-- edit nook modal -->
+  <app-edit-author-modal
+    [authorDetails]="authorDetails"
+    (onSave)="handleEdit($event)"
+  ></app-edit-author-modal>
+  <!-- delete modal -->
+  <app-confirm-delete-modal
+    itemType="Author"
+    [itemName]="authorDetails?.name"
+    (onConfirm)="deleteAuthor()"
+  ></app-confirm-delete-modal>
+  <!-- loading spinner-->
+  <ng-template #loading>
+    <app-loading-spinner></app-loading-spinner>
+  </ng-template>
+</div>

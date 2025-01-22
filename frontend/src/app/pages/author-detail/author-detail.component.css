@@ -1,0 +1,12 @@
+.author-books {
+  margin-top: 3em;
+}
+
+.header-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header-buttons button {
+  margin: 6px;
+}
