@@ -19,6 +19,10 @@ export class BookService {
     return this.http.get<Book>(`${this.baseUrl}/${id}`);
   }
 
+  getBooksByAuthor(authorId: number): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.baseUrl}/author/${authorId}`);
+  }
+
   createBook(book: Book): Observable<Book> {
     return this.http.post<Book>(`${this.baseUrl}`, book);
   }
