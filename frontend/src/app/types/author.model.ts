@@ -5,3 +5,8 @@ export interface Author {
   createdAt: string; // ISO Date format as string
   updatedAt: string; // ISO Date format as string
 }
+
+export interface AuthorUpdate {
+  name: string;
+  bio: string;
+}
