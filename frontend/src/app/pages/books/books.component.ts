@@ -12,7 +12,7 @@ import { LoadingSpinnerComponent } from '../../components/loading-spinner/loadin
   templateUrl: './books.component.html',
   styleUrl: './books.component.css',
 })
-export class BooksComponent {
+export class BooksComponent implements OnInit {
   books: Book[] = [];
   isLoading: boolean = true;
   selectedSort: string = 'title'; // initial sort value (title, author, year, updatedAt)
@@ -25,17 +25,17 @@ export class BooksComponent {
 
   fetchBooks(): void {
     this.isLoading = true;
-    this.bookService.getBooks().subscribe(
-      (data) => {
+    this.bookService.getBooks().subscribe({
+      next: (data) => {
         this.books = data;
         this.sortBooks(); // initial sort
         this.isLoading = false;
       },
-      (error) => {
-        console.error('Erro ao buscar os livros:', error);
+      error: (error) => {
+        console.error('Error fetching books:', error);
         this.isLoading = false;
-      }
-    );
+      },
+    });
   }
 
   onSortChange(event: Event): void {
