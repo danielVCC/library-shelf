@@ -48,7 +48,7 @@ export class BookDetailComponent implements OnInit {
   }
 
   // handle save-changes for edit-modal
-  handleSave(updatedFields: BookUpdate): void {
+  handleEdit(updatedFields: BookUpdate): void {
     this.isLoading = true; // start loading state
 
     this.bookService.updateBook(this.bookId, updatedFields).subscribe({
@@ -72,13 +72,11 @@ export class BookDetailComponent implements OnInit {
       next: () => {
         console.log('Book deleted successfully');
         alert('Book deleted successfully!');
-        this.router.navigate(['/books']); // Redireciona para a lista de livros
+        this.router.navigate(['/books']);
       },
       error: (error) => {
         console.error('Error deleting book:', error);
         alert('Failed to delete book. Please try again later.');
-      },
-      complete: () => {
         this.isLoading = false;
       },
     });
