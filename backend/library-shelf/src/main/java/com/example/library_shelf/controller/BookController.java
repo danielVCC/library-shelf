@@ -1,6 +1,6 @@
 package com.example.library_shelf.controller;
 
-import com.example.library_shelf.model.Book;
+import com.example.library_shelf.entity.Book;
 import com.example.library_shelf.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

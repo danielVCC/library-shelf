@@ -1,4 +1,4 @@
-package com.example.library_shelf.model;
+package com.example.library_shelf.entity;
 
 import java.time.LocalDateTime;
 

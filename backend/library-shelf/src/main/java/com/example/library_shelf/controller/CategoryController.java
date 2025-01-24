@@ -1,6 +1,6 @@
 package com.example.library_shelf.controller;
 
-import com.example.library_shelf.model.Category;
+import com.example.library_shelf.entity.Category;
 import com.example.library_shelf.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

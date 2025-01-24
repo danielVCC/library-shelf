@@ -1,6 +1,6 @@
 package com.example.library_shelf.service;
 
-import com.example.library_shelf.model.Author;
+import com.example.library_shelf.entity.Author;
 import com.example.library_shelf.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

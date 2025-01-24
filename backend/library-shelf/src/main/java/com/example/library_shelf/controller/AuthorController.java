@@ -1,6 +1,6 @@
 package com.example.library_shelf.controller;
 
-import com.example.library_shelf.model.Author;
+import com.example.library_shelf.entity.Author;
 import com.example.library_shelf.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
