@@ -6,6 +6,7 @@ public class BookMinDTO {
     private final Long id;
     private final String title;
     private final String description;
+    private final Integer publishedYear;
     private final String authorName;
     private final String categoryName;
 
@@ -13,6 +14,7 @@ public class BookMinDTO {
         this.id = book.getId();
         this.title = book.getTitle();
         this.description = book.getDescription();
+        this.publishedYear = book.getPublishedYear();
         this.authorName = book.getAuthor() != null ? book.getAuthor().getName() : null;
         this.categoryName = book.getCategory() != null ? book.getCategory().getName() : null;
     }
@@ -28,6 +30,8 @@ public class BookMinDTO {
     public String getDescription() {
         return description;
     }
+
+    public Integer getPublishedYear() { return publishedYear; }
 
     public String getAuthorName() {
         return authorName;

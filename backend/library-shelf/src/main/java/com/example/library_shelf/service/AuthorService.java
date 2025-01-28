@@ -1,5 +1,8 @@
 package com.example.library_shelf.service;
 
+import com.example.library_shelf.dto.AuthorDTO;
+import com.example.library_shelf.dto.AuthorMinDTO;
+import com.example.library_shelf.dto.AuthorUpdateDTO;
 import com.example.library_shelf.entity.Author;
 import com.example.library_shelf.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,31 +17,41 @@ public class AuthorService {
     @Autowired
     private AuthorRepository authorRepository;
 
-    public List<Author> getAllAuthors() {
-        return authorRepository.findAll();
+    public List<AuthorMinDTO> getAllAuthors() {
+        return authorRepository.findAllAuthorsWithBookCount();
     }
 
+    // service use method
     public Optional<Author> getAuthorById(Long id) {
         return authorRepository.findById(id);
     }
 
-    public Author saveAuthor(Author author) {
-        return authorRepository.save(author);
+    // controller use method
+    public Optional<AuthorDTO> getAuthorByIdAsDTO(Long id) {
+        return authorRepository.findById(id)
+                .map(AuthorDTO::new);
+    }
+
+    public AuthorDTO createAuthor(AuthorDTO authorDTO) {
+        Author newAuthor = new Author();
+        newAuthor.setName(authorDTO.getName());
+        newAuthor.setBio(authorDTO.getBio());
+        return new AuthorDTO(authorRepository.save(newAuthor));
+    }
+
+    public AuthorDTO updateAuthor(Long id, AuthorUpdateDTO updatedAuthor) {
+        Author existingAuthor = authorRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Author not found"));
+
+        // update fields
+        existingAuthor.setName(updatedAuthor.getName());
+        existingAuthor.setBio(updatedAuthor.getBio());
+
+        return new AuthorDTO(authorRepository.save(existingAuthor));
     }
 
     public void deleteAuthor(Long id) {
         authorRepository.deleteById(id);
-    }
-
-    public Author updateAuthor(Long id, Author updatedAuthor) {
-        Author existingAuthor = authorRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Author not found"));
-
-        // update allowed fields
-        existingAuthor.setName(updatedAuthor.getName());
-        existingAuthor.setBio(updatedAuthor.getBio());
-
-        return authorRepository.save(existingAuthor);
     }
 }
 

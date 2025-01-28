@@ -3,12 +3,7 @@ package com.example.library_shelf.controller;
 import com.example.library_shelf.dto.BookDTO;
 import com.example.library_shelf.dto.BookMinDTO;
 import com.example.library_shelf.dto.BookUpdateDTO;
-import com.example.library_shelf.entity.Author;
-import com.example.library_shelf.entity.Book;
-import com.example.library_shelf.entity.Category;
-import com.example.library_shelf.service.AuthorService;
 import com.example.library_shelf.service.BookService;
-import com.example.library_shelf.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,12 +17,6 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
-
-    @Autowired
-    private AuthorService authorService;
-
-    @Autowired
-    private CategoryService categoryService;
 
     @GetMapping
     public ResponseEntity<List<BookMinDTO>> getAllBooks() {
@@ -46,8 +35,8 @@ public class BookController {
     }
 
     @GetMapping("/author/{authorId}")
-    public ResponseEntity<List<BookDTO>> getBooksByAuthor(@PathVariable Long authorId) {
-        List<BookDTO> books = bookService.getBooksByAuthor(authorId);
+    public ResponseEntity<List<BookMinDTO>> getBooksByAuthor(@PathVariable Long authorId) {
+        List<BookMinDTO> books = bookService.getBooksByAuthor(authorId);
         return ResponseEntity.ok(books);
     }
 

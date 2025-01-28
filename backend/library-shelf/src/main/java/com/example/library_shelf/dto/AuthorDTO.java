@@ -1,11 +1,10 @@
 package com.example.library_shelf.dto;
 
 import com.example.library_shelf.entity.Author;
-import com.example.library_shelf.entity.Book;
 import org.springframework.beans.BeanUtils;
 
 import java.time.LocalDateTime;
-import java.util.List;
+
 
 public class AuthorDTO {
 
@@ -14,7 +13,9 @@ public class AuthorDTO {
     private String bio;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private List<Book> books;
+
+    public AuthorDTO() {
+    }
 
     public AuthorDTO(Author entity) {
         BeanUtils.copyProperties(entity, this);
@@ -58,13 +59,5 @@ public class AuthorDTO {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
     }
 }

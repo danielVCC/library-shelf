@@ -1,6 +1,8 @@
 package com.example.library_shelf.controller;
 
-import com.example.library_shelf.entity.Author;
+import com.example.library_shelf.dto.AuthorDTO;
+import com.example.library_shelf.dto.AuthorMinDTO;
+import com.example.library_shelf.dto.AuthorUpdateDTO;
 import com.example.library_shelf.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,29 +19,36 @@ public class AuthorController {
     private AuthorService authorService;
 
     @GetMapping
-    public List<Author> getAllAuthors() {
-        return authorService.getAllAuthors();
+    public ResponseEntity<List<AuthorMinDTO>> getAllAuthors() {
+        List<AuthorMinDTO> authors = authorService.getAllAuthors();
+        if (authors.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(authors);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Author> getAuthorById(@PathVariable Long id) {
-        return authorService.getAuthorById(id)
+    public ResponseEntity<AuthorDTO> getAuthorById(@PathVariable Long id) {
+        return authorService.getAuthorByIdAsDTO(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Author> createAuthor(@RequestBody Author author) {
-        Author savedAuthor = authorService.saveAuthor(author);
+    public ResponseEntity<AuthorDTO> createAuthor(@RequestBody AuthorDTO author) {
+        AuthorDTO savedAuthor = authorService.createAuthor(author);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedAuthor);
     }
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<Author> updateAuthor(@PathVariable Long id, @RequestBody Author updatedAuthor) {
-        return authorService.getAuthorById(id)
-                .map(existingAuthor -> ResponseEntity.ok(authorService.updateAuthor(id, updatedAuthor)))
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<AuthorDTO> updateAuthor(@PathVariable Long id, @RequestBody AuthorUpdateDTO authorUpdateDTO) {
+        try {
+            AuthorDTO updatedAuthor = authorService.updateAuthor(id, authorUpdateDTO);
+            return ResponseEntity.ok(updatedAuthor);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")

@@ -1,11 +1,9 @@
 package com.example.library_shelf.dto;
 
-import com.example.library_shelf.entity.Book;
 import com.example.library_shelf.entity.Category;
 import org.springframework.beans.BeanUtils;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
 public class CategoryDTO {
 
@@ -13,7 +11,8 @@ public class CategoryDTO {
     private String name;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private Set<Book> books;
+
+    public CategoryDTO() {}
 
     public CategoryDTO(Category entity) {
         BeanUtils.copyProperties(entity, this);
@@ -25,14 +24,6 @@ public class CategoryDTO {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Set<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(Set<Book> books) {
-        this.books = books;
     }
 
     public LocalDateTime getUpdatedAt() {

@@ -1,8 +1,6 @@
 package com.example.library_shelf.dto;
 
-import com.example.library_shelf.entity.Author;
 import com.example.library_shelf.entity.Book;
-import com.example.library_shelf.entity.Category;
 
 import java.time.LocalDateTime;
 
@@ -12,8 +10,8 @@ public class BookDTO {
     private String title;
     private String description;
     private Integer publishedYear;
-    private Author author;
-    private Category category;
+    private AuthorDTO author;
+    private CategoryDTO category;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -25,8 +23,8 @@ public class BookDTO {
         this.title = entity.getTitle();
         this.description = entity.getDescription();
         this.publishedYear = entity.getPublishedYear();
-        this.author = entity.getAuthor();
-        this.category = entity.getCategory();
+        this.author = new AuthorDTO(entity.getAuthor());
+        this.category = new CategoryDTO(entity.getCategory());
         this.createdAt = entity.getCreatedAt();
         this.updatedAt = entity.getUpdatedAt();
     }
@@ -63,19 +61,19 @@ public class BookDTO {
         this.publishedYear = publishedYear;
     }
 
-    public Category getCategory() {
+    public CategoryDTO getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(CategoryDTO category) {
         this.category = category;
     }
 
-    public Author getAuthor() {
+    public AuthorDTO getAuthor() {
         return author;
     }
 
-    public void setAuthor(Author author) {
+    public void setAuthor(AuthorDTO author) {
         this.author = author;
     }
 

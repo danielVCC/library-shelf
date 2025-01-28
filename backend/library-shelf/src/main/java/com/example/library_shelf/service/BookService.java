@@ -31,10 +31,10 @@ public class BookService {
                 .toList();
     }
 
-    public List<BookDTO> getBooksByAuthor(Long authorId) {
+    public List<BookMinDTO> getBooksByAuthor(Long authorId) {
         return bookRepository.findByAuthorId(authorId)
                 .stream()
-                .map(BookDTO::new)
+                .map(BookMinDTO::new)
                 .toList();
     }
 
@@ -43,22 +43,22 @@ public class BookService {
                 .map(BookDTO::new);
     }
 
-    public BookDTO updateBook(Long id, BookUpdateDTO bookUpdateDTO) {
+    public BookDTO updateBook(Long id, BookUpdateDTO updatedBook) {
         Book existingBook = bookRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Book not found"));
 
         // update basic fields
-        existingBook.setTitle(bookUpdateDTO.getTitle());
-        existingBook.setDescription(bookUpdateDTO.getDescription());
-        existingBook.setPublishedYear(bookUpdateDTO.getPublishedYear());
+        existingBook.setTitle(updatedBook.getTitle());
+        existingBook.setDescription(updatedBook.getDescription());
+        existingBook.setPublishedYear(updatedBook.getPublishedYear());
 
         // author validation
-        Author author = authorService.getAuthorById(bookUpdateDTO.getAuthorId())
+        Author author = authorService.getAuthorById(updatedBook.getAuthorId())
                 .orElseThrow(() -> new IllegalArgumentException("Author not found"));
         existingBook.setAuthor(author);
 
         // category validation
-        Category category = categoryService.getCategoryById(bookUpdateDTO.getCategoryId())
+        Category category = categoryService.getCategoryById(updatedBook.getCategoryId())
                 .orElseThrow(() -> new IllegalArgumentException("Category not found"));
         existingBook.setCategory(category);
 
