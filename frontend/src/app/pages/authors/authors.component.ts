@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AuthorListComponent } from '../../components/author-list/author-list.component';
-import { Author } from '../../types/author.model';
+import { AuthorMin } from '../../types/author.model';
 import { AuthorService } from '../../services/author/author.service';
 import { LoadingSpinnerComponent } from '../../components/loading-spinner/loading-spinner.component';
 
@@ -13,7 +13,7 @@ import { LoadingSpinnerComponent } from '../../components/loading-spinner/loadin
   styleUrl: './authors.component.css',
 })
 export class AuthorsComponent implements OnInit {
-  authors: Author[] = [];
+  authors: AuthorMin[] = [];
   isLoading: boolean = true;
   selectedSort: string = 'name';
 
@@ -49,14 +49,14 @@ export class AuthorsComponent implements OnInit {
         return a.name.localeCompare(b.name);
       }
       // order to implement:
-      // else if (this.selectedSort === 'books') {
-      //   return a.bookCount - b.bookCount;
-      // }
-      else if (this.selectedSort === 'updatedAt') {
-        return (
-          new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
-        );
+      else if (this.selectedSort === 'bookCount') {
+        return b.bookCount - a.bookCount;
       }
+      // else if (this.selectedSort === 'updatedAt') {
+      //   return (
+      //     new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+      //   );
+      // }
       return 0;
     });
   }

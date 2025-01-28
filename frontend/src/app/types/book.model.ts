@@ -12,10 +12,19 @@ export interface Book {
   updatedAt: string; // ISO Date format as string
 }
 
+export interface BookMin {
+  id: number;
+  title: string;
+  description: string;
+  publishedYear: number;
+  authorName: string;
+  categoryName: string;
+}
+
 export interface BookUpdate {
   title: string;
   description: string;
   publishedYear: number;
-  author: { id: number };
-  category: { id: number };
+  authorId: number;
+  categoryId: number;
 }

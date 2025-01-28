@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { Author, AuthorUpdate } from '../../types/author.model';
-import { Book } from '../../types/book.model';
+import { BookMin } from '../../types/book.model';
 import { AuthorService } from '../../services/author/author.service';
 import { BookService } from '../../services/book/book.service';
 import { BookListComponent } from '../../components/book-list/book-list.component';
@@ -27,7 +27,7 @@ export class AuthorDetailComponent implements OnInit {
   authorId!: number;
   authorDetails?: Author;
   isLoading: boolean = true;
-  books: Book[] = [];
+  books: BookMin[] = [];
 
   constructor(
     private authorService: AuthorService,
@@ -56,7 +56,7 @@ export class AuthorDetailComponent implements OnInit {
 
   loadBooksByAuthor(): void {
     this.bookService.getBooksByAuthor(this.authorId).subscribe({
-      next: (books: Book[]) => {
+      next: (books: BookMin[]) => {
         this.books = books;
       },
       error: (err) => {

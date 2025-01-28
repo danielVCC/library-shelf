@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AuthorCardComponent } from '../author-card/author-card.component';
-import { Author } from '../../types/author.model';
+import { AuthorMin } from '../../types/author.model';
 
 @Component({
   selector: 'app-author-list',
@@ -11,5 +11,5 @@ import { Author } from '../../types/author.model';
   styleUrl: './author-list.component.css',
 })
 export class AuthorListComponent {
-  @Input() authors: Author[] = [];
+  @Input() authors: AuthorMin[] = [];
 }

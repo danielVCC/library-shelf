@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 import { AuthorService } from '../../services/author/author.service';
 import { CategoryService } from '../../services/category/category.service';
 import { BookService } from '../../services/book/book.service';
-import { Author } from '../../types/author.model';
-import { Category } from '../../types/category.model';
+import { Author, AuthorMin } from '../../types/author.model';
+import { CategoryMin } from '../../types/category.model';
 
 @Component({
   selector: 'app-add-book',
@@ -22,8 +22,8 @@ import { Category } from '../../types/category.model';
 })
 export class AddBookComponent implements OnInit {
   bookForm!: FormGroup;
-  authors: Author[] = [];
-  categories: Category[] = [];
+  authors: AuthorMin[] = [];
+  categories: CategoryMin[] = [];
   isLoadingAuthors: boolean = true;
   isLoadingCategories: boolean = true;
 
