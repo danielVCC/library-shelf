@@ -7,6 +7,7 @@ import com.example.library_shelf.entity.Author;
 import com.example.library_shelf.entity.Book;
 import com.example.library_shelf.entity.Category;
 import com.example.library_shelf.repository.BookRepository;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,12 +26,14 @@ public class BookService {
     @Autowired
     private CategoryService categoryService;
 
+    @Transactional(readOnly = true)
     public List<BookMinDTO> getAllBooks() {
         return bookRepository.findAll().stream()
                 .map(BookMinDTO::new)
                 .toList();
     }
 
+    @Transactional(readOnly = true)
     public List<BookMinDTO> getBooksByAuthor(Long authorId) {
         return bookRepository.findByAuthorId(authorId)
                 .stream()
@@ -38,11 +41,13 @@ public class BookService {
                 .toList();
     }
 
+    @Transactional(readOnly = true)
     public Optional<BookDTO> getBookById(Long id) {
         return bookRepository.findById(id)
                 .map(BookDTO::new);
     }
 
+    @Transactional
     public BookDTO updateBook(Long id, BookUpdateDTO updatedBook) {
         Book existingBook = bookRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Book not found"));
@@ -65,6 +70,7 @@ public class BookService {
         return new BookDTO(bookRepository.save(existingBook));
     }
 
+    @Transactional
     public BookDTO createBook(BookDTO bookDTO) {
         Book newBook = new Book();
         newBook.setTitle(bookDTO.getTitle());
@@ -84,6 +90,7 @@ public class BookService {
         return new BookDTO(bookRepository.save(newBook));
     }
 
+    @Transactional
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);
     }
