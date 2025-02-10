@@ -8,7 +8,7 @@ This project is currently a **Work in Progress (WIP)**. Some features may be inc
 
 Additionally, certain parts of the application, such as **tests and documentation**, are still being improved and expanded.
 
-## 🚀 Technologies Used
+## Technologies Used
 
 ### **Frontend (Angular)**
 
@@ -31,7 +31,7 @@ Additionally, certain parts of the application, such as **tests and documentatio
 - **MySQL 8** → Relational database used for data storage
 - **Amazon RDS** → AWS-managed database service used for MySQL hosting
 
-## ✨ Features
+## Features
 
 ✅ Listing books and authors with filters and sorting  
 ✅ Adding, editing, and removing books and authors  
@@ -39,7 +39,7 @@ Additionally, certain parts of the application, such as **tests and documentatio
 
 ---
 
-## 📡 API Endpoints
+## API Endpoints
 
 ### **📌 Author Endpoints**
 
